@@ -13,14 +13,14 @@ ROOT = tk.Tk()
 
 ROOT.withdraw()
     
-## webpage viewer 2.0
+## webpage viewer 2.1
 
 ## Description: Combining all your favourite search engines into one, simple, easy-to-use tool. Set your default search engine,
 ## and search any query you like, or open up a website using prefixes: 'https', 'www'. You can even check your search history,
 ## or even re-create your webpage using text in python! You even have the option to input your querys into GUI or console!
 ## What's great is that it is open source!
 
-## release notes: now has a default settings for either console-based input or gui-based input
+## release notes: now has a default settings for previewing the site
 
 ## author: jaskaran (owner of https://jaskaranpython.glitch.me)
 
@@ -42,7 +42,7 @@ try:
         sleep(0.5)
         xd = open("C:\\Users\Public\webpage-viewer-settings.txt")
         s = xd.read()
-        print("\nYour default search engine is", s)
+        print("\nYour default search engine is", s, "\n")
         xd.close()
 except FileNotFoundError:
      print("No search engine file found, creating one now...\n")
@@ -56,12 +56,12 @@ except FileNotFoundError:
 ## GUI Settings file
 try:
     with open("C:\\Users\Public\webpage-viewer-settings-gui.txt") as f:
-        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings.txt)")
+        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings-gui.txt)")
         print("Reading contents...")
         sleep(0.5)
         xd = open("C:\\Users\Public\webpage-viewer-settings-gui.txt")
         s = xd.read()
-        print("\nYou are currently using", s)
+        print("\nYou are currently using", s, "\n")
         xd.close()
 except FileNotFoundError:
      print("\nNo input file found, creating one now...\n")
@@ -71,7 +71,27 @@ except FileNotFoundError:
      ttt = open("C:\\Users\Public\webpage-viewer-settings-gui.txt", "w")
      ttt.write(str(searchengine))
      ttt.close()
-     
+
+try:
+    with open("C:\\Users\Public\webpage-viewer-settings-recreate.txt") as f:
+        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings-recreate.txt)")
+        print("Reading contents...")
+        sleep(0.5)
+        xd = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt")
+        s = xd.read()
+        if s == "yes":
+            print("\nYou are currently recreating the website.")
+        else:
+            print("\nYou are currently not recreating the website.")
+        xd.close()
+except FileNotFoundError:
+     print("\nNo input file found, creating one now...\n")
+     sleep(0.5)
+     print("Would you like to automatically re-create the website before it opens? Note this will take longer to open the url")
+     recreate = input("> ")
+     ttt = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt", "w")
+     ttt.write(str(recreate))
+     ttt.close()
      
 
 
@@ -95,6 +115,8 @@ tree = open("C:\\Users\Public\webpage-viewer-settings.txt")
 asd = search[:5]
 qwe = search[:3]
 file = tree.read()
+wee = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt")
+nope = wee.read()
 
 if search == "searchHistory":
     a_file = open("C:\\Users\Public\webpage-viewer-search-history.txt")
@@ -108,15 +130,15 @@ elif search == "search history":
     
 elif str(asd) == "https":
     url = search
-    webbrowser.open(url)
+ 
 
 elif str(qwe) == "www":
     url = search
-    webbrowser.open(url)
+ 
     
 elif file == "Google" or file == "google":
     url = "https://www.google.com/search?q="+str(search)
-    webbrowser.open(url, new=2)
+ 
         
     sleep(2)
 
@@ -127,7 +149,7 @@ elif file == "Google" or file == "google":
 elif file == "Bing" or file == "bing":
     url = "https://www.bing.com/search?q="+str(search)
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -137,7 +159,7 @@ elif file == "Bing" or file == "bing":
 elif file == "Yahoo" or file == "yahoo":
     url = "https://uk.search.yahoo.com/search?p="+search
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -147,7 +169,7 @@ elif file == "Yahoo" or file == "yahoo":
 elif file == "DuckDuckGo" or file == "duckduckgo":
     url = "https://duckduckgo.com/?q="+search
         
-    webbrowser.open(url, new=2)
+
         
 
                         
@@ -166,7 +188,7 @@ elif file == "Ecosia" or file == "ecosia":
 elif file == "Baidu" or file == "baidu":
     url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&ch=&tn=baidu&bar=&wd="+search
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -176,7 +198,7 @@ elif file == "Baidu" or file == "baidu":
 elif file == "Yandex" or file == "yandex":
     url = "https://yandex.ru/search/?lr=21134&text="+search
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -186,7 +208,7 @@ elif file == "Yandex" or file == "yandex":
 elif file == "Ask" or file == "ask":
     url = "https://www.ask.com/web?q="+search
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -195,8 +217,7 @@ elif file == "Ask" or file == "ask":
         
 elif file == "Wikipedia" or file == "wikipedia":
     url = "https://en.wikipedia.org/wiki/"+search
-        
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
                     
@@ -205,7 +226,7 @@ elif file == "Wikipedia" or file == "wikipedia":
 elif file == "Webcrawler" or file == "webcrawler":
     url = "https://www.webcrawler.com/serp?q="+search
         
-    webbrowser.open(url, new=2)
+
         
     sleep(2)
 
@@ -224,10 +245,7 @@ else:
 
 if not search == "searchHistory":
     if not search == "search history":
-        print("Would you like to recreate the webpage using text? Note images won't be included and the program will time out before it can print all of the text.")
-        yesno = input("> ")
-        if yesno == "no":
-            exit("Ok")
+
         print("Converting webpage to text..")
 
         req = requests.get(url)
@@ -256,4 +274,36 @@ if not search == "searchHistory":
     
         print(new_text)
 
+if wee == "yes":
+    if not search == "search history":
 
+        req = requests.get(url)
+
+
+        html = req.text
+
+
+        PlainText = BeautifulSoup(html, 'lxml')
+
+        text = PlainText.get_text()
+        split = text.split('}')
+        withoutCss = split[len(split) - 1]
+
+
+        ## And now... Converting it line by line WITHOUT USING REGEX!
+
+        text = withoutCss
+        new_text = ''
+
+        for i, letter in enumerate(text):
+            if i and letter.isupper():
+                new_text += '\n'
+
+            new_text += letter
+    
+        print(new_text)
+        
+
+
+input("Type anything to open the url")
+webbrower.open(url)
