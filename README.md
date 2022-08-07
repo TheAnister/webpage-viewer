@@ -5,7 +5,7 @@ Full, up-to-date releases & more can be found on this website: https://jaskaranp
 
 
 # Description
-Combining all your favourite search engines into one, simple, easy-to-use tool. Set your default search engine, and search any query you like, or open up a website using prefixes: 'https', 'www'. You can even check your search history, or even re-create your webpage using text in python! You even have the option to input your querys into GUI or console! What's great is that it is open source!
+Combining all your favourite search engines into one, simple, easy-to-use tool. Set your default search engine, and search any query you like, or open up a website using prefixes: 'https', 'www'. You can even check your search history, or even re-create your webpage using text in python! You even have the option to input your querys into GUI or console! It even saves your settings on your hard drive so YOU don't have to remember! What's great is that it is open source!
 
 # Releases
 You can view all releases with their release notes at https://github.com/TheAnister/webpage-viewer/releases/ 
