@@ -13,14 +13,14 @@ ROOT = tk.Tk()
 
 ROOT.withdraw()
     
-## webpage viewer 2.1
+## webpage viewer 2.2
 
 ## Description: Combining all your favourite search engines into one, simple, easy-to-use tool. Set your default search engine,
 ## and search any query you like, or open up a website using prefixes: 'https', 'www'. You can even check your search history,
 ## or even re-create your webpage using text in python! You even have the option to input your querys into GUI or console!
 ## What's great is that it is open source!
 
-## release notes: now has a default settings for previewing the site
+## release notes: Now stores the settings files in your local AppData folder, so different users can't get their settings mixed up. It also greets you using your name at the start :)
 
 ## author: jaskaran (owner of https://jaskaranpython.glitch.me)
 
