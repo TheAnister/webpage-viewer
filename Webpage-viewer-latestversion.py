@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 import tkinter as tk
 from tkinter import simpledialog
-
+import getpass
 
 ROOT = tk.Tk()
 
@@ -25,41 +25,45 @@ ROOT.withdraw()
 ## author: jaskaran (owner of https://jaskaranpython.glitch.me)
 
 ## license: 100% Open Source
-print(" ")
-print("webpage viewer beta, a project by jaskaran\n")
+username = getpass.getuser()
+
+print("\n")
+print("Hello, "+username+", welcome to webpage viewer beta, a project by jaskaran\n")
 sleep(1)
 
 print("Searching for default settings file...")
 sleep(1)
 
+
+
 ## Search engine file
 
-
 try:
-    with open("C:\\Users\Public\webpage-viewer-settings.txt") as f:
-        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings.txt)")
+
+    with open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt") as f:
+        print("Found default settings file (C://Users/"+username+"/AppData/webpage-viewer-settings.txt)")
         print("Reading contents...")
         sleep(0.5)
-        xd = open("C:\\Users\Public\webpage-viewer-settings.txt")
+        xd = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt")
         s = xd.read()
         print("\nYour default search engine is", s, "\n")
         xd.close()
 except FileNotFoundError:
-     print("No search engine file found, creating one now...\n")
+     print("\nNo search engine file found, creating one now...\n")
      sleep(0.5)
      print("What is your default search engine? (Google, Bing, Yahoo, DuckDuckGo, Ecosia, Wikipedia, Baidu, Yandex, Ask, Webcrawler)")
      searchengine = input("> ")
-     file = open("C:\\Users\Public\webpage-viewer-settings.txt", "w")
+     file = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt", "w")
      file.write(str(searchengine))
      file.close()
      
 ## GUI Settings file
 try:
-    with open("C:\\Users\Public\webpage-viewer-settings-gui.txt") as f:
-        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings-gui.txt)")
+    with open("C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt") as f:
+        print("Found default settings file (C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt)")
         print("Reading contents...")
         sleep(0.5)
-        xd = open("C:\\Users\Public\webpage-viewer-settings-gui.txt")
+        xd = open("C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt")
         s = xd.read()
         print("\nYou are currently using", s, "\n")
         xd.close()
@@ -68,28 +72,37 @@ except FileNotFoundError:
      sleep(0.5)
      print("How would you like your input to display? (GUI, Console)")
      searchengine = input("> ")
-     ttt = open("C:\\Users\Public\webpage-viewer-settings-gui.txt", "w")
+     ttt = open("C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt", "w")
      ttt.write(str(searchengine))
      ttt.close()
 
 try:
-    with open("C:\\Users\Public\webpage-viewer-settings-recreate.txt") as f:
-        print("Found default settings file (C:\\Users\Public\webpage-viewer-settings-recreate.txt)")
+    with open("C://Users/"+username+"/AppData\webpage-viewer-settings-recreate.txt") as f:
+        print("Found default settings file (C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt)")
         print("Reading contents...")
         sleep(0.5)
-        xd = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt")
+        xd = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt")
         s = xd.read()
         if s == "yes":
             print("\nYou are currently recreating the website.")
-        else:
+        elif s == "no":
             print("\nYou are currently not recreating the website.")
+        else:
+            print("An unknown error occured whilst reading the default settings file. Retrying, this time, please use a lowercase letter at the start.")
+            sleep(2)
+            print("Would you like to automatically re-create the website before it opens? Note this will take longer to open the url")
+            recreate = input("> ")
+            ttt = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt", "w")
+            ttt.write(str(recreate))
+            ttt.close()
+     
         xd.close()
 except FileNotFoundError:
      print("\nNo input file found, creating one now...\n")
      sleep(0.5)
      print("Would you like to automatically re-create the website before it opens? Note this will take longer to open the url")
      recreate = input("> ")
-     ttt = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt", "w")
+     ttt = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt", "w")
      ttt.write(str(recreate))
      ttt.close()
      
@@ -97,7 +110,7 @@ except FileNotFoundError:
 
 print("\njaskaran's webpage-viewer 2.0")
 
-suii = open("C:\\Users\Public\webpage-viewer-settings-gui.txt")
+suii = open("C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt")
 mm = suii.read()
 
 if mm == "gui" or "GUI":
@@ -107,27 +120,28 @@ if mm == "gui" or "GUI":
 elif mm == "console" or "Console":
     search = str(input("> "))
 
-
-with open('C:\\Users\Public\webpage-viewer-search-history.txt','a+') as fileobj:
+## Opening Files
+with open("C://Users/"+username+"/AppData/webpage-viewer-search-history.txt",'a+') as fileobj:
     fileobj.write("\n"+str(search))
     fileobj.close()
-tree = open("C:\\Users\Public\webpage-viewer-settings.txt")
+tree = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt")
 asd = search[:5]
 qwe = search[:3]
 file = tree.read()
-wee = open("C:\\Users\Public\webpage-viewer-settings-recreate.txt")
+wee = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt")
 nope = wee.read()
 
 if search == "searchHistory":
-    a_file = open("C:\\Users\Public\webpage-viewer-search-history.txt")
+    a_file = open("C://Users/"+username+"/AppData/webpage-viewer-search-history.txt")
     file_contents = a_file.read()
     print(file_contents)
 
 elif search == "search history":
-    a_file = open("C:\\Users\Public\webpage-viewer-search-history.txt")
+    a_file = open("C://Users/"+username+"/AppData/webpage-viewer-search-history.txt")
     file_contents = a_file.read()
     print(file_contents)
     
+## Opening Websites   
 elif str(asd) == "https":
     url = search
  
@@ -135,7 +149,7 @@ elif str(asd) == "https":
 elif str(qwe) == "www":
     url = search
  
-    
+## Opening search engines    
 elif file == "Google" or file == "google":
     url = "https://www.google.com/search?q="+str(search)
  
@@ -234,7 +248,7 @@ elif file == "Webcrawler" or file == "webcrawler":
     tree.close()
         
 else:
-    print("Invalid: Please type a correct search engine. Replace your current search engine at (C:\\Users\Public\webpage-viewer-settings.txt)")
+    print("Invalid: Please type a correct search engine. Replace your current search engine at (C:\\Users\YourUsername\webpage-viewer-settings.txt)")
     sleep(2)
         
     tree.close()
@@ -305,5 +319,7 @@ if wee == "yes":
         
 
 
-input("Type anything to open the url")
+print("Type anything to open the url")
+input("> ")
+
 webbrower.open(url)
