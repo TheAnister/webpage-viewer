@@ -1,7 +1,8 @@
 # webpage-viewer
 A webpage viewer written in python 
 
-Full, up-to-date releases & more can be found on this website: https://jaskaranpython.glitch.me/webviewer.html
+Full, up-to-date releases & more can be found on this website: https://jaskaranpython.glitch.me/webviewer.html 
+Alternative github website: https://theanister.github.io/
 
 
 # Description
@@ -10,7 +11,7 @@ Combining all your favourite search engines into one, simple, easy-to-use tool. 
 # Releases
 You can view all releases with their release notes at https://github.com/TheAnister/webpage-viewer/releases/ 
 
-You can also view releases on our website at https://jaskaranpython.glitch.me/webviewer.html
+You can also view releases on our website at https://jaskaranpython.glitch.me/webviewer.html or https://theanister.github.io/
 
 # Other Projects
 There are currently no other python projects by the official JASKARANYPTHON on github, but you can browse it on https://jaskaranpython.glitch.me
