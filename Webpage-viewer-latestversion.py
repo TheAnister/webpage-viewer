@@ -8,19 +8,22 @@ import requests
 import tkinter as tk
 from tkinter import simpledialog
 import getpass
+import asyncio
 
 ROOT = tk.Tk()
 
 ROOT.withdraw()
     
-## webpage viewer 2.2
+## webpage viewer 2.4
 
 ## Description: Combining all your favourite search engines into one, simple, easy-to-use tool. Set your default search engine,
 ## and search any query you like, or open up a website using prefixes: 'https', 'www'. You can even check your search history,
 ## or even re-create your webpage using text in python! You even have the option to input your querys into GUI or console!
 ## What's great is that it is open source!
 
-## release notes: Now stores the settings files in your local AppData folder, so different users can't get their settings mixed up. It also greets you using your name at the start :)
+## release notes: preview of website didn't really work this time, so it was removed (webpage-viewer browser will come out soon).
+## Instead, we made the default search engine ask if you want to set it as default, or if you don't. Also, we added in a new
+## search engine - Collins Dictionary
 
 ## author: jaskaran (owner of https://jaskaranpython.glitch.me)
 
@@ -49,13 +52,20 @@ try:
         print("\nYour default search engine is", s, "\n")
         xd.close()
 except FileNotFoundError:
-     print("\nNo search engine file found, creating one now...\n")
-     sleep(0.5)
-     print("What is your default search engine? (Google, Bing, Yahoo, DuckDuckGo, Ecosia, Wikipedia, Baidu, Yandex, Ask, Webcrawler)")
-     searchengine = input("> ")
-     file = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt", "w")
-     file.write(str(searchengine))
-     file.close()
+     print("\nNo search engine file found, would you like to create one now? (recommended)\n")
+     oui = input("> ")
+     if oui == "yes":
+         sleep(0.5)
+         print("What is your default search engine? (Google, Bing, Yahoo, DuckDuckGo, Ecosia, Wikipedia, Baidu, Yandex, Ask, Dictionary, Webcrawler)")
+         searchengine = input("> ")
+         file = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt", "w")
+         file.write(str(searchengine))
+         file.close()
+     elif oui == "no":
+         print("What would you like to set your temporary search engine to be? (Google, Bing, Yahoo, DuckDuckGo, Ecosia, Wikipedia, Baidu, Dictionary, Yandex, Ask, Webcrawler)")
+         searchengine = input("> ")
+     else:
+         print("Error occured (unknown response). Please restart the program immediately!")
      
 ## GUI Settings file
 try:
@@ -76,39 +86,8 @@ except FileNotFoundError:
      ttt.write(str(searchengine))
      ttt.close()
 
-try:
-    with open("C://Users/"+username+"/AppData\webpage-viewer-settings-recreate.txt") as f:
-        print("Found default settings file (C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt)")
-        print("Reading contents...")
-        sleep(0.5)
-        xd = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt")
-        s = xd.read()
-        if s == "yes":
-            print("\nYou are currently recreating the website.")
-        elif s == "no":
-            print("\nYou are currently not recreating the website.")
-        else:
-            print("An unknown error occured whilst reading the default settings file. Retrying, this time, please use a lowercase letter at the start.")
-            sleep(2)
-            print("Would you like to automatically re-create the website before it opens? Note this will take longer to open the url")
-            recreate = input("> ")
-            ttt = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt", "w")
-            ttt.write(str(recreate))
-            ttt.close()
-     
-        xd.close()
-except FileNotFoundError:
-     print("\nNo input file found, creating one now...\n")
-     sleep(0.5)
-     print("Would you like to automatically re-create the website before it opens? Note this will take longer to open the url")
-     recreate = input("> ")
-     ttt = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt", "w")
-     ttt.write(str(recreate))
-     ttt.close()
-     
 
-
-print("\njaskaran's webpage-viewer 2.0")
+print("\njaskaran's webpage-viewer 2.4")
 
 suii = open("C://Users/"+username+"/AppData/webpage-viewer-settings-gui.txt")
 mm = suii.read()
@@ -124,12 +103,18 @@ elif mm == "console" or "Console":
 with open("C://Users/"+username+"/AppData/webpage-viewer-search-history.txt",'a+') as fileobj:
     fileobj.write("\n"+str(search))
     fileobj.close()
-tree = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt")
+
+if oui == "yes":
+    tree = open("C://Users/"+username+"/AppData/webpage-viewer-settings.txt")
+    file = tree.read()
 asd = search[:5]
 qwe = search[:3]
-file = tree.read()
 wee = open("C://Users/"+username+"/AppData/webpage-viewer-settings-recreate.txt")
 nope = wee.read()
+
+if oui == "no":
+    file = searchengine
+
 
 if search == "searchHistory":
     a_file = open("C://Users/"+username+"/AppData/webpage-viewer-search-history.txt")
@@ -152,174 +137,103 @@ elif str(qwe) == "www":
 ## Opening search engines    
 elif file == "Google" or file == "google":
     url = "https://www.google.com/search?q="+str(search)
- 
+     
+    
         
-    sleep(2)
+    sleep(1)
 
 
                 
-    tree.close()
-        
+
+elif file == "Dictionary" or file == "dictionary":
+    url = "https://www.collinsdictionary.com/dictionary/english/"+str(search)
+    
+    sleep(1)
+    
+    
 elif file == "Bing" or file == "bing":
     url = "https://www.bing.com/search?q="+str(search)
         
 
         
-    sleep(2)
+    sleep(1)
 
                      
-    tree.close()
         
 elif file == "Yahoo" or file == "yahoo":
     url = "https://uk.search.yahoo.com/search?p="+search
         
 
         
-    sleep(2)
+    sleep(1)
 
                     
-    tree.close()
         
 elif file == "DuckDuckGo" or file == "duckduckgo":
     url = "https://duckduckgo.com/?q="+search
         
 
-        
+    sleep(1)
 
                         
-    tree.close()
         
 elif file == "Ecosia" or file == "ecosia":
     url = "https://www.ecosia.org/search?method=index&q="+search
         
-    webbrowser.open(url, new=2)
         
-    sleep(2)
+    sleep(1)
 
                     
-    tree.close()
         
 elif file == "Baidu" or file == "baidu":
     url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&ch=&tn=baidu&bar=&wd="+search
         
 
         
-    sleep(2)
+    sleep(1)
 
                     
-    tree.close()
         
 elif file == "Yandex" or file == "yandex":
     url = "https://yandex.ru/search/?lr=21134&text="+search
         
 
         
-    sleep(2)
+    sleep(1)
 
                     
-    tree.close()
         
 elif file == "Ask" or file == "ask":
     url = "https://www.ask.com/web?q="+search
         
 
         
-    sleep(2)
+    sleep(1)
 
                         
-    tree.close()
         
 elif file == "Wikipedia" or file == "wikipedia":
     url = "https://en.wikipedia.org/wiki/"+search
 
         
-    sleep(2)
+    sleep(1)
                     
-    tree.close()
         
 elif file == "Webcrawler" or file == "webcrawler":
     url = "https://www.webcrawler.com/serp?q="+search
         
 
         
-    sleep(2)
+    sleep(1)
 
                 
-    tree.close()
         
 else:
     print("Invalid: Please type a correct search engine. Replace your current search engine at (C:\\Users\YourUsername\webpage-viewer-settings.txt)")
-    sleep(2)
-        
-    tree.close()
-
-# My attempt to convert the html to text (very laggy and buggy)
-
-
-
-if not search == "searchHistory":
-    if not search == "search history":
-
-        print("Converting webpage to text..")
-
-        req = requests.get(url)
-
-
-        html = req.text
-
-
-        PlainText = BeautifulSoup(html, 'lxml')
-
-        text = PlainText.get_text()
-        split = text.split('}')
-        withoutCss = split[len(split) - 1]
-
-
-        ## And now... Converting it line by line WITHOUT USING REGEX!
-
-        text = withoutCss
-        new_text = ''
-
-        for i, letter in enumerate(text):
-            if i and letter.isupper():
-                new_text += '\n'
-
-            new_text += letter
-    
-        print(new_text)
-
-if wee == "yes":
-    if not search == "search history":
-
-        req = requests.get(url)
-
-
-        html = req.text
-
-
-        PlainText = BeautifulSoup(html, 'lxml')
-
-        text = PlainText.get_text()
-        split = text.split('}')
-        withoutCss = split[len(split) - 1]
-
-
-        ## And now... Converting it line by line WITHOUT USING REGEX!
-
-        text = withoutCss
-        new_text = ''
-
-        for i, letter in enumerate(text):
-            if i and letter.isupper():
-                new_text += '\n'
-
-            new_text += letter
-    
-        print(new_text)
+    sleep(1)
         
 
+get_url= webbrowser.open(url)
 
-print("Type anything to open the url")
-input("> ")
 
-webbrower.open(url)
+
